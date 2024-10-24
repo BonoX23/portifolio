@@ -1,0 +1,148 @@
+:host {
+    margin-top: 25px;
+    margin-bottom: 90px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+    h2 {
+      text-align: center;
+      margin: 0 0 25px 0;
+    }
+  
+    details {
+      margin-top: 10px;
+      background: var(--black-010);
+      border-radius: 7px;
+      transition: all 0.4s ease-in-out;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+      }
+
+      summary {
+        cursor: pointer;
+        padding: 15px 20px;
+        transition: all 0.4s ease;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        background: var(--primary);
+        border-radius: 7px;
+        list-style: none;
+
+        &::-webkit-details-marker {
+          display: none;
+        }
+
+        &:hover {
+          filter: brightness(1.1);
+        }
+
+        &::after {
+          transition: transform 0.5s ease;
+          display: flex;
+          align-items: center;
+        }
+
+        p {
+          font-size: 14px;
+          color: var(--black-010);
+
+          padding: 0;
+          margin: 0;
+
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      article {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.7s ease-in-out, opacity 0.7s ease-in-out, padding 0.7s ease-in-out;
+        opacity: 0;
+        padding: 0 20px;
+
+        > div {
+          overflow: hidden;
+
+          ::ng-deep ul {
+            margin: 0;
+            padding-left: 20px;
+            list-style: disc;
+
+            li {
+              color: var(--grey);
+              font-size: 16px;
+              line-height: 1.6;
+              margin-bottom: 8px;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+
+        p {
+          line-height: 1.6;
+          margin: 0;
+        }
+      }
+
+      &[open]:not(.animating) {
+        summary {
+          border-radius: 7px 7px 0 0;
+
+          &::after {
+            content: url("../../../../../assets/icons/chevron-up.svg");
+            margin-top: 5px;
+          }
+        }
+      }
+
+      &[open].animating {
+        article {
+          grid-template-rows: 1fr;
+          opacity: 1;
+          padding: 20px;
+        }
+
+        summary {
+          border-radius: 7px 7px 0 0;
+
+          &::after {
+            content: url("../../../../../assets/icons/chevron-up.svg");
+            margin-top: 5px;
+          }
+        }
+      }
+
+      &.closing {
+        summary {
+          border-radius: 7px;
+
+          &::after {
+            content: url("../../../../../assets/icons/chevron-down.svg");
+            margin-top: 5px;
+          }
+        }
+      }
+
+      &:not([open]) {
+        summary {
+          &::after {
+            content: url("../../../../../assets/icons/chevron-down.svg");
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
